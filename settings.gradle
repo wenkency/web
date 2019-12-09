@@ -1,0 +1,2 @@
+include ':app', ':lib-web'
+rootProject.name='WebSample'

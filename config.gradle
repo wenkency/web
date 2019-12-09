@@ -1,0 +1,18 @@
+// 整个项目的配置
+ext {
+    app = [
+            compileSdkVersion: 28,
+            minSdkVersion    : 15,
+            targetSdkVersion : 28,
+            versionCode      : 1,
+            versionName      : "1.0"
+    ]
+
+    // 公共配置
+    versions = [
+            // 阿里的ARouter
+            arouterApi     : "1.5.0",
+            arouterCompiler: "1.2.2",
+            base           : "1.4.0"
+    ]
+}
