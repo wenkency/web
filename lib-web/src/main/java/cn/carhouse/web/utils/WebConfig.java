@@ -12,12 +12,16 @@ public class WebConfig {
     /**
      * JS注入的名称，和H5约定的
      */
-    private String mJSName = "WebConfig";
+    private String mJSName = "JSEvent";
 
     private static WebConfig mInstance = new WebConfig();
 
     public static WebConfig getInstance() {
         return mInstance;
+    }
+
+    public WebConfig() {
+        mEvent = new JSEvent();
     }
 
     /**

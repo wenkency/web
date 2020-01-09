@@ -21,25 +21,33 @@ android {
     }
 }
 
-implementation 'com.github.wenkency:web:1.0.0'
+implementation 'com.github.wenkency:web:1.1.0'
 
 ```
 
 ### 使用方式
 ```
-      // 修改默认配置
-      WebConfig.getInstance().setProgressHeight(5);
-      // 修改进度条颜色
-      WebConfig.getInstance().setProgressDrawable(R.drawable.progress_bar_test);
-      // 打开方式
-      1. WebUtils.getInstance().startWebActivity(Context context, String url) ;
-      2. WebUtils.getInstance().startWebActivity(Context context, String url, String title) ;
-      3. WebUtils.getInstance().startWebActivity(Context context, WebData data) ;
+public class MainActivity extends AppCompatActivity {
 
-      public class WebData implements Serializable {
-          public String url;
-          public String title;
-      }
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        // 修改默认配置
+        WebConfig.getInstance().setProgressHeight(5);
+        // 修改进度条颜色
+        WebConfig.getInstance().setProgressDrawable(R.drawable.progress_bar_test);
+
+        // 添加JS交互事件
+        WebConfig.getInstance().setJSName("WebEvent");
+        WebConfig.getInstance().setEvent(new WebEvent());
+    }
+
+    public void web(View view) {
+        // 使用方式
+        WebUtils.getInstance().startWebActivity(this, "https://dev-h5.car-house.cn/supplier/articles");
+    }
+}
 ```
 
 ### 运行结果
