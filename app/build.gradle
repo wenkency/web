@@ -1,11 +1,11 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion app.compileSdkVersion
     defaultConfig {
         applicationId "cn.carhouse.websample"
-        minSdkVersion 15
-        targetSdkVersion 28
+        minSdkVersion app.minSdkVersion
+        targetSdkVersion app.targetSdkVersion
         versionCode 1
         versionName "1.0"
         ndk {
@@ -22,7 +22,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation versions.appcompat
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     implementation project(path: ':lib-web')
 }

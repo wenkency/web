@@ -1,12 +1,7 @@
 apply plugin: 'com.android.library'
-// 阿里的ARouter
-apply plugin: 'com.alibaba.arouter'
 // 远程仓库
 apply plugin: 'com.github.dcendents.android-maven'
 group = 'com.github.wenkency'
-// 声明及引用
-def app = rootProject.ext.app
-def versions = rootProject.ext.versions
 android {
     compileSdkVersion app.compileSdkVersion
 
@@ -15,13 +10,6 @@ android {
         targetSdkVersion app.targetSdkVersion
         versionCode app.versionCode
         versionName app.versionName
-
-        // 是注解编译用
-        javaCompileOptions {
-            annotationProcessorOptions {
-                arguments = [AROUTER_MODULE_NAME: project.getName()]
-            }
-        }
     }
 
     buildTypes {
@@ -30,18 +18,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
 }
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation files('libs/tbs_sdk_20190805_175505.jar')
+    implementation files('libs/tbs_sdk_20200402_121309.jar')
+    implementation versions.appcompat
     // 基本公共库
-    api "com.github.wenkency:base:${versions.base}"
-    // 阿里ARouter
-    annotationProcessor "com.alibaba:arouter-compiler:${versions.arouterCompiler}"
+    implementation "com.github.wenkency:base:${versions.base}"
 }

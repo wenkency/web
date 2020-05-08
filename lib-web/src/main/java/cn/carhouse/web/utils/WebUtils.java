@@ -1,14 +1,15 @@
 package cn.carhouse.web.utils;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.webkit.URLUtil;
 
-import com.alibaba.android.arouter.launcher.ARouter;
 import com.tencent.smtt.sdk.QbSdk;
 import com.tencent.smtt.sdk.WebView;
 
+import cn.carhouse.web.WebActivity;
 import cn.carhouse.web.bean.WebData;
 
 
@@ -17,7 +18,7 @@ import cn.carhouse.web.bean.WebData;
  */
 
 public class WebUtils {
-    private static boolean isInit;
+    private boolean isInit;
 
     private WebUtils() {
     }
@@ -37,11 +38,12 @@ public class WebUtils {
         if (context == null) {
             return;
         }
-        if (isInit) {
-            return;
-        }
-        //--搜集本地tbs内核信息并上报服务器，服务器返回结果决定使用哪个内核。
+
         try {
+            if (isInit) {
+                return;
+            }
+            //--搜集本地tbs内核信息并上报服务器，服务器返回结果决定使用哪个内核。
             QbSdk.PreInitCallback cb = new QbSdk.PreInitCallback() {
                 @Override
                 public void onViewInitFinished(boolean arg0) {
@@ -51,12 +53,13 @@ public class WebUtils {
                 public void onCoreInitFinished() {
                 }
             };
-            //x5内核初始化接口
+            // x5内核初始化接口
             QbSdk.initX5Environment(context.getApplicationContext(), cb);
+            isInit = true;
         } catch (Throwable e) {
             e.printStackTrace();
         }
-        isInit = true;
+
     }
 
     private void loadWebPage(WebView webView, String url) {
@@ -64,9 +67,6 @@ public class WebUtils {
             if (url.startsWith("http")) {
                 webView.loadUrl(url);
             }
-
-        } else {
-            // throw new NullPointerException("WebView is null!");
         }
     }
 
@@ -121,8 +121,11 @@ public class WebUtils {
             return;
         }
         init(context);
-        ARouter.getInstance().build(WebConfig.PATH)
-                .withSerializable("mWebData", data)
-                .navigation(context);
+        Intent intent = new Intent(context, WebActivity.class);
+        intent.putExtra(WebConfig.DATA, data);
+        if (!(context instanceof Activity)) {
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        }
+        context.startActivity(intent);
     }
 }

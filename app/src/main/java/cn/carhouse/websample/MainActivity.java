@@ -26,6 +26,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void web(View view) {
         // 使用方式
-        WebUtils.getInstance().startWebActivity(this, "https://dev-h5.car-house.cn/supplier/articles");
+        WebUtils.getInstance().startWebActivity(this, "https://www.baidu.com");
     }
 }

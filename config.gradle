@@ -1,9 +1,9 @@
 // 整个项目的配置
 ext {
     app = [
-            compileSdkVersion: 28,
-            minSdkVersion    : 15,
-            targetSdkVersion : 28,
+            compileSdkVersion: 29,
+            minSdkVersion    : 16,
+            targetSdkVersion : 29,
             versionCode      : 1,
             versionName      : "1.0"
     ]
@@ -11,8 +11,7 @@ ext {
     // 公共配置
     versions = [
             // 阿里的ARouter
-            arouterApi     : "1.5.0",
-            arouterCompiler: "1.2.2",
-            base           : "1.4.0"
+            appcompat: 'androidx.appcompat:appcompat:1.1.0',
+            base     : "3.0.1",
     ]
 }

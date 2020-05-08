@@ -34,7 +34,6 @@ public class ProgressWebView extends LinearLayout {
 
     public ProgressWebView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        Log.e("ProgressWebView", "init");
         addProgressbar(context);// 添加进度条
     }
 
@@ -45,7 +44,7 @@ public class ProgressWebView extends LinearLayout {
         removeAllViews();
         setOrientation(VERTICAL);
         progressbar = new ProgressBar(context, null, android.R.attr.progressBarStyleHorizontal);
-        progressbar.setLayoutParams(new ViewGroup.LayoutParams(LayoutParams.FILL_PARENT, dip2px(mProgressHeight)));
+        progressbar.setLayoutParams(new ViewGroup.LayoutParams(LayoutParams.MATCH_PARENT, dip2px(mProgressHeight)));
         Drawable drawable = context.getResources().getDrawable(mProgressDrawable);
         progressbar.setProgressDrawable(drawable);
         addView(progressbar);

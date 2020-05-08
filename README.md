@@ -21,7 +21,7 @@ android {
     }
 }
 
-implementation 'com.github.wenkency:web:1.1.0'
+implementation 'com.github.wenkency:web:1.2.0'
 
 ```
 

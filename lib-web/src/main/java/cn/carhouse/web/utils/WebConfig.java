@@ -5,8 +5,7 @@ import cn.carhouse.web.event.IEvent;
 import cn.carhouse.web.event.JSEvent;
 
 public class WebConfig {
-    public static final String PATH = "/web/activity/web";
-    public static final int EXTRAS = 0x102030;
+    public static final String DATA = "WebData";
 
     private JSEvent mEvent;
     /**

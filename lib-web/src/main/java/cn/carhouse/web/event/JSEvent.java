@@ -2,7 +2,6 @@ package cn.carhouse.web.event;
 
 import android.webkit.JavascriptInterface;
 
-import cn.carhouse.base.utils.TSUtils;
 
 /**
  * Web JS交互的事件处理

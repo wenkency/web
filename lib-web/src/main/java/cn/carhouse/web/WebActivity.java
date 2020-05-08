@@ -9,12 +9,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
-
-import com.alibaba.android.arouter.facade.annotation.Autowired;
-import com.alibaba.android.arouter.facade.annotation.Route;
-import com.alibaba.android.arouter.launcher.ARouter;
 import com.tencent.smtt.sdk.WebView;
-
 import cn.carhouse.base.ui.AppActivity;
 import cn.carhouse.titlebar.DefTitleBar;
 import cn.carhouse.web.bean.WebData;
@@ -27,7 +22,6 @@ import cn.carhouse.web.utils.WebUtils;
 /**
  * 封装的WebActivity
  */
-@Route(path = WebConfig.PATH, extras = WebConfig.EXTRAS)
 public class WebActivity extends AppActivity implements WebChromeClientImpl.OnWebChromeListener {
     private FrameLayout mFlWebContainer;
     private WebViewInitImpl mWebViewInitializer;
@@ -37,23 +31,21 @@ public class WebActivity extends AppActivity implements WebChromeClientImpl.OnWe
     /**
      * 打开页面传递过来的参数
      */
-    @Autowired
     WebData mWebData;
     // 扩展用吧
-    @Autowired
     String url, title;
 
 
     @Override
-    protected Object getContentLayout() {
+    public int getContentLayout() {
         return R.layout.web_activity_web;
     }
 
     @Override
-    protected void initData(Bundle bundle) {
+    public void initData(Bundle bundle) {
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE | WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
         // 获取上个页面传递过来的数据
-        ARouter.getInstance().inject(this);
+        mWebData=(WebData)getIntent().getSerializableExtra(WebConfig.DATA);
         if (!TextUtils.isEmpty(url) && mWebData == null) {
             mWebData = new WebData();
             mWebData.title = title;
@@ -92,7 +84,7 @@ public class WebActivity extends AppActivity implements WebChromeClientImpl.OnWe
     }
 
     @Override
-    protected void initViews(View view) {
+    public void initViews(View view) {
         mFlWebContainer = findViewById(R.id.fl_web_container);
         mWebViewInitializer.setOnWebChromeListener(this);
         if (mFlWebContainer.getChildCount() > 0) {
