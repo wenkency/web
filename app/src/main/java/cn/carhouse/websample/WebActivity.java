@@ -1,4 +1,4 @@
-package cn.carhouse.web;
+package cn.carhouse.websample;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -9,15 +9,17 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
+
 import com.tencent.smtt.sdk.WebView;
+
 import cn.carhouse.base.ui.AppActivity;
 import cn.carhouse.titlebar.DefTitleBar;
+import cn.carhouse.web.ProgressWebView;
 import cn.carhouse.web.bean.WebData;
 import cn.carhouse.web.event.IEvent;
 import cn.carhouse.web.init.WebChromeClientImpl;
 import cn.carhouse.web.init.WebViewInitImpl;
 import cn.carhouse.web.utils.WebConfig;
-import cn.carhouse.web.utils.WebUtils;
 
 /**
  * 封装的WebActivity
@@ -31,9 +33,9 @@ public class WebActivity extends AppActivity implements WebChromeClientImpl.OnWe
     /**
      * 打开页面传递过来的参数
      */
-    WebData mWebData;
+    private WebData mWebData;
     // 扩展用吧
-    String url, title;
+    private String url, title;
 
 
     @Override
@@ -45,7 +47,7 @@ public class WebActivity extends AppActivity implements WebChromeClientImpl.OnWe
     public void initData(Bundle bundle) {
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE | WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
         // 获取上个页面传递过来的数据
-        mWebData=(WebData)getIntent().getSerializableExtra(WebConfig.DATA);
+        mWebData = (WebData) getIntent().getSerializableExtra(WebConfig.DATA);
         if (!TextUtils.isEmpty(url) && mWebData == null) {
             mWebData = new WebData();
             mWebData.title = title;
@@ -85,7 +87,7 @@ public class WebActivity extends AppActivity implements WebChromeClientImpl.OnWe
 
     @Override
     public void initViews(View view) {
-        mFlWebContainer = findViewById(R.id.fl_web_container);
+        mFlWebContainer = findViewById(cn.carhouse.web.R.id.fl_web_container);
         mWebViewInitializer.setOnWebChromeListener(this);
         if (mFlWebContainer.getChildCount() > 0) {
             mFlWebContainer.removeAllViews();

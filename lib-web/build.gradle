@@ -22,8 +22,6 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation files('libs/tbs_sdk_20200402_121309.jar')
-    implementation versions.appcompat
-    // 基本公共库
-    implementation "com.github.wenkency:base:${versions.base}"
+    api files('libs/tbs_sdk__20211203.jar')
+    implementation 'androidx.appcompat:appcompat:1.3.1'
 }

@@ -1,4 +1,4 @@
-package cn.carhouse.web.utils;
+package cn.carhouse.websample;
 
 import android.app.Activity;
 import android.content.Context;
@@ -9,8 +9,8 @@ import android.webkit.URLUtil;
 import com.tencent.smtt.sdk.QbSdk;
 import com.tencent.smtt.sdk.WebView;
 
-import cn.carhouse.web.WebActivity;
 import cn.carhouse.web.bean.WebData;
+import cn.carhouse.web.utils.WebConfig;
 
 
 /**
